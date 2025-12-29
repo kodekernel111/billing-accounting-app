@@ -26,6 +26,10 @@ public class Invoice {
 
     private LocalDate dueDate;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private InvoiceType type = InvoiceType.SALE; // Default to SALE for backward compatibility
+
     @ManyToOne
     @JoinColumn(name = "party_id", nullable = false)
     private Party party;

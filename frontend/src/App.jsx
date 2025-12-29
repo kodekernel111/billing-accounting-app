@@ -11,7 +11,18 @@ import CreateInvoice from './pages/CreateInvoice';
 import CreatePurchase from './pages/CreatePurchase';
 import Transactions from './pages/Transactions';
 import CreateTransaction from './pages/CreateTransaction';
+
 import TrialBalance from './pages/TrialBalance';
+import POS from './pages/POS';
+
+// Sales Subsections
+import Estimates from './pages/sales/Estimates';
+import Proforma from './pages/sales/Proforma';
+import PaymentIn from './pages/sales/PaymentIn';
+import SaleOrder from './pages/sales/SaleOrder';
+import DeliveryChallan from './pages/sales/DeliveryChallan';
+import SaleReturn from './pages/sales/SaleReturn';
+
 import MainLayout from './layouts/MainLayout';
 
 function App() {
@@ -30,6 +41,13 @@ function App() {
            <Route path="items" element={<Items />} />
            <Route path="sales" element={<Sales />} />
            <Route path="sales/create" element={<CreateInvoice />} />
+           <Route path="sales/estimates" element={<Estimates />} />
+           <Route path="sales/proforma" element={<Proforma />} />
+           <Route path="sales/payment-in" element={<PaymentIn />} />
+           <Route path="sales/orders" element={<SaleOrder />} />
+           <Route path="sales/delivery-challan" element={<DeliveryChallan />} />
+           <Route path="sales/return" element={<SaleReturn />} />
+           <Route path="pos" element={<POS />} />
            <Route path="purchases" element={<Purchases />} />
            <Route path="purchases/create" element={<CreatePurchase />} />
            <Route path="transactions" element={<Transactions />} />
