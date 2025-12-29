@@ -64,4 +64,41 @@ public class AuthController {
 
         return ResponseEntity.ok(response);
     }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<?> forgotPassword(@RequestBody Map<String, String> request) {
+        String email = request.get("email");
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Error: User not found with this email!"));
+
+        String token = java.util.UUID.randomUUID().toString();
+        user.setResetToken(token);
+        user.setResetTokenExpiry(java.time.LocalDateTime.now().plusMinutes(30)); // Token valid for 30 minutes
+        userRepository.save(user);
+
+        // Mock Email Service
+        System.out.println("Reset Password Link: http://localhost:5173/reset-password?token=" + token);
+
+        return ResponseEntity.ok("Password reset link has been sent to your email.");
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<?> resetPassword(@RequestBody Map<String, String> request) {
+        String token = request.get("token");
+        String newPassword = request.get("password");
+
+        User user = userRepository.findByResetToken(token)
+                .orElseThrow(() -> new RuntimeException("Error: Invalid token!"));
+
+        if (user.getResetTokenExpiry().isBefore(java.time.LocalDateTime.now())) {
+            return ResponseEntity.badRequest().body("Error: Token has expired!");
+        }
+
+        user.setPassword(passwordEncoder.encode(newPassword));
+        user.setResetToken(null);
+        user.setResetTokenExpiry(null);
+        userRepository.save(user);
+
+        return ResponseEntity.ok("Password has been reset successfully!");
+    }
 }
