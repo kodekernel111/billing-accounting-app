@@ -29,6 +29,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    private String resetToken;
+
+    private java.time.LocalDateTime resetTokenExpiry;
+
     public enum Role {
         ADMIN,
         DATA_ENTRY,
