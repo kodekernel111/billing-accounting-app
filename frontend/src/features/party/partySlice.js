@@ -6,7 +6,7 @@ export const fetchParties = createAsyncThunk('party/fetchAll', async (companyId,
     const response = await api.get(`/parties?companyId=${companyId}`);
     return response.data;
   } catch (err) {
-    return rejectWithValue(err.response.data);
+    return rejectWithValue(err.response?.data || err.message || 'Server Error');
   }
 });
 
@@ -15,7 +15,7 @@ export const createParty = createAsyncThunk('party/create', async ({ partyData, 
      const response = await api.post(`/parties?companyId=${companyId}`, partyData);
      return response.data;
   } catch (err) {
-    return rejectWithValue(err.response.data);
+    return rejectWithValue(err.response?.data || err.message || 'Server Error');
   }
 });
 

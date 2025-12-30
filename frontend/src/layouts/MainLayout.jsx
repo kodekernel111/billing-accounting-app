@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { Navigate, Outlet, Link } from 'react-router-dom';
+import { ChevronDown, ChevronRight } from 'lucide-react';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../features/auth/authSlice';
 
 const MainLayout = () => {
+    const [isSalesOpen, setIsSalesOpen] = useState(true);
     const { isAuthenticated, user } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
@@ -25,17 +28,28 @@ const MainLayout = () => {
                     <Link to="/items" className="block p-2 hover:bg-slate-700 rounded">Items</Link>
                     
                     {/* Sales Section */}
-                    <div className="space-y-1">
-                        <div className="block p-2 text-gray-400 text-sm font-bold uppercase mt-4 mb-1">Sales</div>
-                        <Link to="/sales/create" className="block p-2 pl-4 text-sm hover:bg-slate-700 rounded">1. Create Invoice</Link>
-                        <Link to="/sales/estimates" className="block p-2 pl-4 text-sm hover:bg-slate-700 rounded">2. Estimates / Quotation</Link>
-                        <Link to="/sales/proforma" className="block p-2 pl-4 text-sm hover:bg-slate-700 rounded">3. Proforma Invoice</Link>
-                        <Link to="/sales/payment-in" className="block p-2 pl-4 text-sm hover:bg-slate-700 rounded">4. Payment In</Link>
-                        <Link to="/sales/orders" className="block p-2 pl-4 text-sm hover:bg-slate-700 rounded">5. Sale Order</Link>
-                        <Link to="/sales/delivery-challan" className="block p-2 pl-4 text-sm hover:bg-slate-700 rounded">6. Delivery Challan</Link>
-                        <Link to="/sales/return" className="block p-2 pl-4 text-sm hover:bg-slate-700 rounded">7. Sale Return</Link>
-                        <Link to="/pos" className="block p-2 pl-4 text-sm hover:bg-slate-700 rounded text-yellow-300 font-bold">8. POS</Link>
-                        <Link to="/sales" className="block p-2 pl-4 text-sm hover:bg-slate-700 rounded text-gray-400 italic">View All Invoices</Link>
+                    <div>
+                        <button 
+                            onClick={() => setIsSalesOpen(!isSalesOpen)}
+                            className="w-full flex items-center justify-between p-2 hover:bg-slate-700 rounded text-gray-400 font-bold uppercase text-sm mt-4 mb-1"
+                        >
+                            <span>Sales</span>
+                            {isSalesOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+                        </button>
+                        
+                        {isSalesOpen && (
+                            <div className="space-y-1 pl-2">
+                                <Link to="/sales/create" className="block p-2 text-sm hover:bg-slate-700 rounded">Create Invoice</Link>
+                                <Link to="/sales/estimates" className="block p-2 text-sm hover:bg-slate-700 rounded">Estimates / Quotation</Link>
+                                <Link to="/sales/proforma" className="block p-2 text-sm hover:bg-slate-700 rounded">Proforma Invoice</Link>
+                                <Link to="/sales/payment-in" className="block p-2 text-sm hover:bg-slate-700 rounded">Payment In</Link>
+                                <Link to="/sales/orders" className="block p-2 text-sm hover:bg-slate-700 rounded">Sale Order</Link>
+                                <Link to="/sales/delivery-challan" className="block p-2 text-sm hover:bg-slate-700 rounded">Delivery Challan</Link>
+                                <Link to="/sales/return" className="block p-2 text-sm hover:bg-slate-700 rounded">Sale Return</Link>
+                                <Link to="/pos" className="block p-2 text-sm hover:bg-slate-700 rounded text-yellow-300 font-bold">POS</Link>
+                                <Link to="/sales" className="block p-2 text-sm hover:bg-slate-700 rounded text-gray-400 italic">View All Invoices</Link>
+                            </div>
+                        )}
                     </div>
 
                     <Link to="/purchases" className="block p-2 hover:bg-slate-700 rounded mt-4">Purchases</Link>

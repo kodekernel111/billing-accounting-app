@@ -149,15 +149,16 @@ export const ClassicTheme = ({ data, color }) => (
          </div>
      </div>
 
-     <div className="mt-auto flex justify-between items-end">
-        <div className="w-1/2 p-4 border text-sm">
-             <p className="font-bold mb-1">Terms:</p>
-             <p>1. Goods once sold will not be taken back.</p>
-        </div>
-        <div className="text-center">
-            <p className="mb-8">Authorized Signatory</p>
-        </div>
-     </div>
+      <div className="mt-auto flex justify-between items-end">
+         <div className="w-1/2 p-4 border text-sm">
+              <p className="font-bold mb-1">Terms:</p>
+              <p>1. Goods once sold will not be taken back.</p>
+         </div>
+         <div className="text-right">
+             <p className="font-semibold text-sm mb-8">For: {data.companyName}</p>
+             <p className="font-bold border-t border-gray-400 pt-1 inline-block">Authorized Signatory</p>
+         </div>
+      </div>
   </div>
 );
 
@@ -208,11 +209,10 @@ export const ModernTheme = ({ data, color }) => (
     <div className="mt-auto bg-gray-900 text-white p-6 rounded-xl flex justify-between items-center">
         <div>
             <p className="text-gray-400 text-sm">Thank you for your business</p>
-            <p className="text-xs text-gray-500 mt-1">Authorized Signatory</p>
         </div>
          <div className="text-right">
-             <p className="text-gray-400 text-xs uppercase">Grand Total</p>
-             <p className="text-2xl font-bold">₹ {data.total}</p>
+             <p className="text-sm mb-4">For: {data.companyName}</p>
+             <p className="text-xs text-gray-400 uppercase tracking-widest border-t border-gray-700 pt-1">Authorized Signatory</p>
          </div>
     </div>
   </div>
@@ -281,8 +281,12 @@ export const BoldTheme = ({ data, color }) => (
             </div>
         </div>
 
-        <div className="mt-auto p-8 bg-gray-50 border-t border-gray-100">
-             <p className="text-center text-gray-500 text-sm">Thank you for your partnership</p>
+        <div className="mt-auto p-8 bg-gray-50 border-t border-gray-100 flex justify-between items-end">
+             <p className="text-gray-500 text-sm">Thank you for your partnership</p>
+             <div className="text-right">
+                <p className="font-bold text-gray-800 text-sm mb-6">For: {data.companyName}</p>
+                <p className="text-xs uppercase font-bold border-t border-gray-300 pt-1">Authorized Signatory</p>
+             </div>
         </div>
     </div>
 );

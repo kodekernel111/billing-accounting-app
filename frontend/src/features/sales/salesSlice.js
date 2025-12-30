@@ -6,7 +6,7 @@ export const fetchInvoices = createAsyncThunk('sales/fetchAll', async (companyId
     const response = await api.get(`/invoices?companyId=${companyId}`);
     return response.data;
   } catch (err) {
-    return rejectWithValue(err.response.data);
+    return rejectWithValue(err.response?.data || err.message || 'Server Error');
   }
 });
 
@@ -15,7 +15,7 @@ export const createInvoice = createAsyncThunk('sales/create', async ({ invoiceDa
      const response = await api.post(`/invoices?companyId=${companyId}`, invoiceData);
      return response.data;
   } catch (err) {
-    return rejectWithValue(err.response.data);
+    return rejectWithValue(err.response?.data || err.message || 'Server Error');
   }
 });
 

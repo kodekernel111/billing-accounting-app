@@ -10,10 +10,8 @@ import org.springframework.security.core.Authentication;
 
 @Component
 public class JwtUtil {
-    private static final String SECRET = "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970"; // Mock
-                                                                                                             // secret
-                                                                                                             // (minimum
-                                                                                                             // 256-bit)
+    // Base64 encoded secret (generated for security)
+    private static final String SECRET = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
     private final long EXPIRATION_TIME = 86400000; // 1 day
 
     private Key getSignKey() {

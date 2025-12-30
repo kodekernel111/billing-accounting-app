@@ -38,7 +38,6 @@ function App() {
 
         {/* Protected Routes */}
         <Route path="/" element={<MainLayout />}>
-<<<<<<< HEAD
            <Route index element={<Navigate to="/dashboard" replace />} />
            <Route path="dashboard" element={<Dashboard />} />
            <Route path="parties" element={<Parties />} />
@@ -60,22 +59,6 @@ function App() {
            <Route path="receipts/create" element={<CreateTransaction />} />
            <Route path="journal/create" element={<CreateTransaction />} />
            <Route path="reports" element={<TrialBalance />} />
-=======
-          <Route index element={<Navigate to="/dashboard" replace />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="parties" element={<Parties />} />
-          <Route path="ledgers" element={<Ledgers />} />
-          <Route path="items" element={<Items />} />
-          <Route path="sales" element={<Sales />} />
-          <Route path="sales/create" element={<CreateInvoice />} />
-          <Route path="purchases" element={<Purchases />} />
-          <Route path="purchases/create" element={<CreatePurchase />} />
-          <Route path="transactions" element={<Transactions />} />
-          <Route path="payments/create" element={<CreateTransaction />} />
-          <Route path="receipts/create" element={<CreateTransaction />} />
-          <Route path="journal/create" element={<CreateTransaction />} />
-          <Route path="reports" element={<TrialBalance />} />
->>>>>>> 654db716695aead34d1e6e09c28979ec431a36f2
         </Route>
       </Routes>
     </Router>
